@@ -1,0 +1,32 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package sound_flow;
+
+service SoundFlow {
+  rpc GetDevices (Direction) returns (Devices) {}
+  rpc SendFlow(stream Flow) returns (google.protobuf.Empty) {}
+  rpc GetFlow (google.protobuf.Empty) returns (stream Flow) {}
+  rpc SetDevice (DeviceId) returns (google.protobuf.Empty) {}
+}
+
+message Direction {
+  bool direction = 1; // false: Playback, true: Capture, default: false
+}
+
+message DeviceId {
+  uint32 id = 1;
+  optional bool direction = 2; // false: Playback, true: Capture, default: false
+}
+
+message Devices {
+  repeated Device devices = 1;
+}
+
+message Device {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message Flow {
+  repeated float flow = 1;
+}

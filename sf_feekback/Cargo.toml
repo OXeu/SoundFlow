@@ -1,0 +1,22 @@
+[package]
+name = "sf_auto_focus"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tonic = { version = "0.10", features = ["gzip"] }
+prost = "0.12"
+tokio = { version = "1.0", features = ["rt-multi-thread", "macros", "sync", "time"] }
+tokio-stream = "0.1"
+
+async-stream = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rand = "0.7"
+anyhow = "1.0.79"
+pulsectl-rs = "0.3.2"
+
+[build-dependencies]
+tonic-build = "0.10"
