@@ -1,7 +1,7 @@
 [workspace]
 members = [
-    "sf_core",
-    "sf_feekback", "cpal",
+    "service",
+    "feekback", "win-audio",
 ]
 resolver = "2"
 
