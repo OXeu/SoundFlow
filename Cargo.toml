@@ -1,7 +1,7 @@
 [workspace]
 members = [
     "service",
-    "feekback", "win-audio",
+    "feekback",
 ]
 resolver = "2"
 
