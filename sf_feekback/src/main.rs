@@ -1,3 +1,5 @@
+use std::time::Duration;
+
 use tokio_stream::StreamExt;
 use tokio_stream::wrappers::ReceiverStream;
 
@@ -24,6 +26,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
     client.send_flow(ReceiverStream::new(rx)).await?;
-    loop {}
-    // Ok(())
+    loop {
+        tokio::time::sleep(Duration::from_secs(10)).await
+    }
 }

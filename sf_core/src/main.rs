@@ -1,5 +1,6 @@
 use std::mem::MaybeUninit;
 use std::sync::{Arc, Mutex};
+use std::time::Duration;
 
 use cpal::Stream;
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
@@ -106,6 +107,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             let _ = tx.send(Ok(Flow {
                 flow: v
             }));
+        } else {
+            tokio::time::sleep(Duration::from_millis(10)).await
         };
     }
 }
@@ -156,6 +159,8 @@ fn speaker() -> (Producer<Vec<f32>, Arc<SharedRb<Vec<f32>, Vec<MaybeUninit<Vec<f
             if let Some(consumer_data) = consumer.pop() {
                 let min = sample.len().min(consumer_data.len());
                 sample[..min].copy_from_slice(&consumer_data.as_slice()[..min]);
+            } else {
+                sample.iter_mut().for_each(|x| *x = 0.0);
             }
         }
 
