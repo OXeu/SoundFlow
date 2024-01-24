@@ -1,8 +1,5 @@
 /target
-/.idea/.gitignore
-/.idea/modules.xml
-/.idea/sound_flow.iml
-/.idea/vcs.xml
+/.idea
 /cpal/src/main.rs
 /cpal/Cargo.toml
 */target/*
